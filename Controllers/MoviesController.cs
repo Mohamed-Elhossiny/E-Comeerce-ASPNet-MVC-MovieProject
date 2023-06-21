@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieProject.Data;
+using MovieProject.Repository.MoviesRepository;
 
 namespace MovieProject.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly AppDbContext appcontext;
+		private readonly IMoviesRepository moviesRepository;
 
-        public MoviesController(AppDbContext _appcontext)
+		public MoviesController(IMoviesRepository moviesRepository)
         {
-            appcontext = _appcontext;
-        }
+			this.moviesRepository = moviesRepository;
+		}
         public async Task<IActionResult> Index()
         {
-            var allMovies = await appcontext.Movies.Include(n=>n.Cinema).ToListAsync();
+            var allMovies = await moviesRepository.GetAllAsync();
             return View(allMovies);
         }
     }

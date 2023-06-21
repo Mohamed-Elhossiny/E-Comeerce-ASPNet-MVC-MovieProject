@@ -14,7 +14,7 @@ namespace MovieProject.Data.Base
 
 		public async Task AddAsync(T entity) => await context.Set<T>().AddAsync(entity);
 
-		public async Task<IEnumerable<T>> GetAllAsync() => await context.Set<T>().ToListAsync();
+		public virtual async Task<IEnumerable<T>> GetAllAsync() => await context.Set<T>().ToListAsync();
 
 		public async Task<T> GetByIdAsync(int id) => await context.Set<T>().FirstOrDefaultAsync(a => a.Id == id);
 

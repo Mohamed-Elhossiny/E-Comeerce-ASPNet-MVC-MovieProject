@@ -1,10 +1,11 @@
-﻿using MovieProject.Data.Enums;
+﻿using MovieProject.Data.Base;
+using MovieProject.Data.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MovieProject.Models
 {
-    public class Movie
+    public class Movie:IEntityBase
     {
         [Key]
         public int Id { get; set; }

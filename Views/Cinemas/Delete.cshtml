@@ -1,0 +1,43 @@
+﻿@model CinemasDetailViewModel
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 offset-2">
+			<h1 class="text-center">Confirm Deleting @Model.CinemaName</h1>
+			<div class="row">
+				<div class="col-md-8 offset-2">
+					<form method="post" asp-action="Delete" enctype="multipart/form-data">
+						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+						<div class="form-group text-center">
+							<img src="/images/Cinemas/@Model.Logo" class="rounded-circle" style="max-width:200px" />
+						</div>
+						<div class="form-group">
+							<label asp-for="CinemaName" class="control-label"></label>
+							<input asp-for="CinemaName" class="form-control" />
+							<span asp-validation-for="CinemaName" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Description" class="control-label"></label>
+							<input asp-for="Description" class="form-control" />
+							<span asp-validation-for="Description" class="text-danger"></span>
+						</div>
+						<div class="form-group mt-3">
+							<input type="submit" value="Confirm Delete" class="btn btn-danger float-end" />
+							<a asp-action="Index" asp-controller="Cinemas" class="btn btn-outline-secondary">Show All</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

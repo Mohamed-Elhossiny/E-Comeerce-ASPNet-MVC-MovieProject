@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MovieProject.Data;
 using MovieProject.Repository.ActorsServies;
+using MovieProject.Repository.CinemasRepository;
+using MovieProject.Repository.MoviesRepository;
 using MovieProject.Repository.ProducersRepository;
 using MovieProject.Services.ActorsServies;
 
@@ -19,6 +21,8 @@ namespace MovieProject
 			
 			builder.Services.AddScoped<IActorsRepository,ActorsRepository>();
 			builder.Services.AddScoped<IProducersRepository, ProducersRepository>();
+			builder.Services.AddScoped<ICinemasRepository, CinemasRepository>();
+			builder.Services.AddScoped<IMoviesRepository, MoviesRepository>();
 
 
 			var app = builder.Build();
