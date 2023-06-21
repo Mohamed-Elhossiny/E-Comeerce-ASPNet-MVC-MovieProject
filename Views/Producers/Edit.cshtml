@@ -1,0 +1,47 @@
+﻿@model ProducersDetailsViewModel
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 offset-2">
+			<h1 class="text-center"> Update @Model.FullName</h1>
+			<div class="row">
+				<div class="col-md-8 offset-2">
+					<form asp-action="Edit" enctype="multipart/form-data">
+						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+						<div class="form-group text-center">
+							<img src="/images/Producers/@Model.PictureURl" class="rounded-circle" style="max-width:200px" />
+						</div>
+						<div class="form-group">
+							<label asp-for="PictureURl" class="control-label"></label>
+							<input asp-for="PictureURl" name="PictureURl" class="form-control" type="file" value="@Model.PictureURl" />
+							<span asp-validation-for="PictureURl" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="FullName" class="control-label"></label>
+							<input asp-for="FullName" class="form-control" />
+							<span asp-validation-for="FullName" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Bio" class="control-label"></label>
+							<input asp-for="Bio" class="form-control" />
+							<span asp-validation-for="Bio" class="text-danger"></span>
+						</div>
+						<div class="form-group mt-3">
+							<input type="submit" value="Update" class="btn btn-outline-success float-end" />
+							<a asp-action="Index" asp-controller="Producers" class="btn btn-outline-secondary">Show All</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
