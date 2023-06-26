@@ -9,6 +9,7 @@ namespace MovieProject.Repository.MoviesRepository
 		Task<Movie> GetMovieByIdAsync(int id);
 		Task AddActorMvie(Actor_Movie actor_Movie);
 
-		Task UpdateMovieAsync(MovieImageViewModel movieVm);
+		Task UpdateMovieAsync(MovieViewModel movieVm);
+		// Task DeleteMovieAsync(int id);
 	}
 }

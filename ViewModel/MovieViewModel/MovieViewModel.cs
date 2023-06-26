@@ -7,7 +7,8 @@ namespace MovieProject.ViewModel.MovieViewModel
 {
 	public class MovieViewModel
 	{
-		[Required(ErrorMessage ="Name Is Required")]
+        public int Id { get; set; }
+        [Required(ErrorMessage ="Name Is Required")]
 		[Display(Name="Movie Name")]
 		public string Name { get; set; }
 
@@ -19,9 +20,9 @@ namespace MovieProject.ViewModel.MovieViewModel
 		[Display(Name = "Price in $")]
 		public double? Price { get; set; }
 
-		[Required(ErrorMessage = "Image Is Required")]
+		//[Required(ErrorMessage = "Image Is Required")]
 		[Display(Name = "Image URl")]
-		public string ImageURL { get; set; }
+		public string? ImageURL { get; set; }
 
 		[Required(ErrorMessage = "Start Date Is Required")]
 		[Display(Name = " Movie Start date")]

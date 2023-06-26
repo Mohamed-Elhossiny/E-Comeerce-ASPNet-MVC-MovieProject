@@ -35,18 +35,49 @@ namespace MovieProject.Controllers
 			this.webHostEnvironment = webHostEnvironment;
 		}
 
-        public async Task<IActionResult> Filter(string searchString)
-        {
-            var allMovies = await moviesRepository.GetAllAsync();
+		public async Task<IActionResult> Filter(string searchString)
+		{
+			var allMovies = await moviesRepository.GetAllAsync();
 			if (!string.IsNullOrEmpty(searchString))
 			{
 				var filterResult = allMovies.Where(n => n.Name.ToLower().Contains(searchString) || n.Description.ToLower().Contains(searchString)).ToList();
 				return View("Index", filterResult);
 			}
-            return RedirectToAction("Index");
-        }
+			return RedirectToAction("Index");
+		}
 
-        public async Task<IActionResult> Index()
+		public async Task<IActionResult> Delete(int id)
+		{
+			var movieDetails = await moviesRepository.GetMovieByIdAsync(id);
+			var movieVM = new MovieViewModel();
+
+			movieVM.Name = movieDetails.Name;
+			movieVM.ImageURL = movieDetails.ImageURL;
+			movieVM.StartDate = movieDetails.StartDate;
+			movieVM.EndData = movieDetails.EndData;
+			movieVM.ProducerId = movieDetails.ProducerId;
+			movieVM.Description = movieDetails.Description;
+			movieVM.CinemaId = movieDetails.CinemaId;
+			movieVM.MovieCategory = movieDetails.MovieCategory;
+			movieVM.Price = movieDetails.Price;
+			movieVM.ActorsIds = movieDetails.Actors_Movies.Select(n => n.ActorId).ToList();
+
+			ViewData["cinmeaList"] = await cinemas.GetAllAsync();
+			ViewData["producersList"] = await producers.GetAllAsync();
+			ViewData["actorsList"] = await actors.GetAllAsync();
+
+			return View(movieVM);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Delete(int id,MovieImageViewModel movieVM)
+		{
+			await moviesRepository.DeleteAsync(id);
+			await moviesRepository.SaveAsync();
+			return RedirectToAction("Index");
+		}
+
+		public async Task<IActionResult> Index()
 		{
 			var allMovies = await moviesRepository.GetAllAsync();
 			return View(allMovies);
@@ -135,20 +166,20 @@ namespace MovieProject.Controllers
 		}
 
 		[HttpPost]
-        public async Task<IActionResult> Edit(MovieImageViewModel movieVM)
-        {
-            if (ModelState.IsValid == true)
-            {
+		public async Task<IActionResult> Edit(MovieViewModel movieVM)
+		{
+			if (ModelState.IsValid == true)
+			{
 				await moviesRepository.UpdateMovieAsync(movieVM);
-                return RedirectToAction("Index");
-            }
-            ViewData["cinmeaList"] = await cinemas.GetAllAsync();
-            ViewData["producersList"] = await producers.GetAllAsync();
-            ViewData["actorsList"] = await actors.GetAllAsync();
-            return View(movieVM);
-        }
+				return RedirectToAction("Index");
+			}
+			ViewData["cinmeaList"] = await cinemas.GetAllAsync();
+			ViewData["producersList"] = await producers.GetAllAsync();
+			ViewData["actorsList"] = await actors.GetAllAsync();
+			return View(movieVM);
+		}
 
 
 
-    }
+	}
 }

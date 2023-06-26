@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MovieProject.Data.Cart;
 using MovieProject.Repository.MoviesRepository;
 using MovieProject.Repository.OrderRepository;
@@ -37,7 +38,7 @@ namespace MovieProject.Controllers
             response.ShoppingCartTotal = shoppingCart.GetShoppingCartTotal();
             return View(response);
         }
-
+        [Authorize]
         public async Task<IActionResult> AddItemToShoppingCart(int id)
         {
             var item = await moviesRepository.GetMovieByIdAsync(id);

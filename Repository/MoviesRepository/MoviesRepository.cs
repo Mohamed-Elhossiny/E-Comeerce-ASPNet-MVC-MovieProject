@@ -23,6 +23,11 @@ namespace MovieProject.Repository.MoviesRepository
 			await context.Actors_Movies.AddAsync(actor_Movie);
 		}
 
+		//public async Task DeleteMovieAsync(int id)
+		//{
+		//	var movie = context.Movies.
+		//}
+
 		public override async Task<IEnumerable<Movie>> GetAllAsync()
 		{
 			return await context.Movies.Include(m=>m.Cinema).ToListAsync();
@@ -37,20 +42,20 @@ namespace MovieProject.Repository.MoviesRepository
 			return  movieDetails;
 		}
 
-        public async Task UpdateMovieAsync(MovieImageViewModel movieVM)
+        public async Task UpdateMovieAsync(MovieViewModel movieVM)
         {
 			var movieDb =await context.Movies.FirstOrDefaultAsync(n => n.Id == movieVM.Id);
             if (movieDb != null)
 			{
-                var uploadPath = Path.Combine(webHostEnvironment.WebRootPath, "images", "Movies");
-                var pictureName = Guid.NewGuid().ToString() + "-" + movieVM.ImageURL.FileName;
-                var filePath = Path.Combine(uploadPath, pictureName);
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    movieVM.ImageURL.CopyTo(stream);
-                }
+                //var uploadPath = Path.Combine(webHostEnvironment.WebRootPath, "images", "Movies");
+                //var pictureName = Guid.NewGuid().ToString() + "-" + movieVM.ImageURL.FileName;
+                //var filePath = Path.Combine(uploadPath, pictureName);
+                //using (var stream = new FileStream(filePath, FileMode.Create))
+                //{
+                //    movieVM.ImageURL.CopyTo(stream);
+                //}
                 movieDb.Name = movieVM.Name;
-                movieDb.ImageURL = pictureName;
+                //movieDb.ImageURL = pictureName;
                 movieDb.StartDate = movieVM.StartDate;
                 movieDb.EndData = movieVM.EndData;
                 movieDb.ProducerId = movieVM.ProducerId;
