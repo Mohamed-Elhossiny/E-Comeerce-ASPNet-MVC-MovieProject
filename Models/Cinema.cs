@@ -16,6 +16,6 @@ namespace MovieProject.Models
 
         [Display(Name = "Cinema Description")]
         public string Description { get; set; }
-        public List<Movie> Movies { get; set; }
+        public virtual List<Movie>? Movies { get; set; }
     }
 }

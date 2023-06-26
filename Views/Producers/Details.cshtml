@@ -1,7 +1,6 @@
-﻿
-@model ProducersDetailsViewModel
+﻿@model ProducersDetailsViewModel
 @{
-    ViewData["Title"] = "Details";
+	ViewData["Title"] = "Details";
 }
 <div class="container">
 	<div class="row">
@@ -29,7 +28,10 @@
 						<span asp-validation-for="Bio" class="text-danger"></span>
 					</div>
 					<div class="form-group mt-3">
-						<a asp-action="Edit" asp-controller="Producers" asp-route-id="@Model.Id" class="btn btn-outline-success float-end"><i class="bi bi-pencil-square"></i> Edit</a>
+						@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+						{
+							<a asp-action="Edit" asp-controller="Producers" asp-route-id="@Model.Id" class="btn btn-outline-success float-end"><i class="bi bi-pencil-square"></i> Edit</a>
+						}
 						<a asp-action="Index" asp-controller="Producers" class="btn btn-outline-secondary">Show All</a>
 					</div>
 				</div>
