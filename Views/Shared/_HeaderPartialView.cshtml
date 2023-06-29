@@ -1,6 +1,6 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="color:#26425A;">
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark navbar-dark border-bottom box-shadow mb-3  mb-4" style="background-color:#26425A;">
 	<div class="container-fluid">
-		<a class="navbar-brand" asp-area="" asp-controller="Movies" asp-action="Index">MovieProject</a>
+		<a class="navbar-brand me-5" asp-area="" asp-controller="Movies" asp-action="Index">E-MOVIES</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
 				aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
 		<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
 			<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
 				<li class="navbar-nav">
-					<a class="nav-link text-dark" asp-controller="Movies" asp-action="Index"><i class="badge-info bi-film"></i> Movies</a>
+					<a class="navbar-brand" asp-controller="Movies" asp-action="Index"><i class="badge-info bi-film"></i> Movies</a>
 				</li>
 
 				@if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
