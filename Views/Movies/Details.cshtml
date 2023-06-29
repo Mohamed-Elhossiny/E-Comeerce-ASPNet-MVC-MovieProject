@@ -10,8 +10,8 @@
 				<div class="col-md-12">
 					<div class="card-header text-white bg-info">
 						<p class="card-text">
-							<h5 class="card-title">
-								@Model.Name
+							<h5 class="card-title fw-bold">
+								<b>@Model.Name</b>
 							</h5>
 						</p>
 					</div>
@@ -21,14 +21,14 @@
 				</div>
 				<div class="col-md-8">
 					<div class="card-body">
-						<p class="card-text">@Model.Description</p>
+						<p class="card-text"><b>@Model.Description </b></p>
 						<p class="card-text"><b>Category: </b>@Model.MovieCategory</p>
 						<p class="card-text">
 							<b>Cinema: </b>
 							<a asp-controller="Cinemas" asp-action="Details" asp-route-id="@Model.CinemaId">@Model.Cinema.Name</a>
 						</p>
 						<p class="card-text">
-							<b>Cinema: </b>
+							<b>Producer: </b>
 							<a asp-controller="Producers" asp-action="Details" asp-route-id="@Model.ProducerId">@Model.Producer.FullName</a>
 						</p>
 						<p class="card-text"><b>Start Date: </b>@Model.StartDate.ToString("dd MMM yy")</p>

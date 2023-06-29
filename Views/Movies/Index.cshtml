@@ -14,8 +14,8 @@
 						<div class="col-md-12">
 							<div class="card-header text-white bg-info">
 								<p class="card-text">
-									<h3 class="card-title ">
-										@item.Name
+									<h3 class="card-title fw-bold">
+										<b>@item.Name </b>
 										@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 										{
 											<a class="text-white float-end" asp-action="Edit" asp-controller="Movies" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
@@ -30,7 +30,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="card-body">
-								<p class="card-text">@item.Description</p>
+								<p class="card-text"><b> @item.Description</b></p>
 								<p class="card-text"><b>Category: </b>@item.MovieCategory</p>
 								<p class="card-text"><b>Cinema: </b>@item.Cinema.Name</p>
 								<p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
